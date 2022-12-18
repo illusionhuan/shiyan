@@ -4,5 +4,5 @@
 
 ####  基础题
 
-(1)题目编号:1075 题解:
+(1)题目编号:1075 题解:https://github.com/illusionhuan/shiyan/blob/main/solution/1075.cpp
 
