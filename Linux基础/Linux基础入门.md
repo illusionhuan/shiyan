@@ -154,11 +154,11 @@ sudo deluser lilei --remove-home
 ls -l
 ```
 
-![image-20220722142342235](Typora\typora-user-images\image-20220722142342235.png)
+![image-20220722142342235](image-20220722142342235.png)
 
 
 
-![image-20220722142344204](Typora\typora-user-images\image-20220722142344204.png)
+![image-20220722142344204](image-20220722142344204.png)
 
 ### 文件权限
 
@@ -474,7 +474,7 @@ echo $tmp
 | env    | 显示与当前用户相关的环境变量，还可以让命令在指定环境中运行。 |
 | export | 显示从 Shell 中导出成环境变量的变量，也能通过它将自定义变量导出为环境变量。 |
 
-![image-20220728162209904](Typora\typora-user-images\image-20220728162209904.png)
+![image-20220728162209904](image-20220728162209904.png)
 
 ### 
 
@@ -1959,13 +1959,13 @@ sudo less /var/log/auth.log
 
 ## 附件:(1)Vi(Vim)键盘图
 
-![image-20220820111411937](Typora\typora-user-images\image-20220820111411937.png)
+![image-20220820111411937](image-20220820111411937.png)
 
 ## 附件:(2)Linux命令参考
 
-![image-20220820112244994](Typora\typora-user-images\image-20220820112244994.png)
+![image-20220820112244994](image-20220820112244994.png)
 
-![image-20220820112251021](Typora\typora-user-images\image-20220820112251021.png)
+![image-20220820112251021](image-20220820112251021.png)
 
 ## 附件:(3)正则表达式
 
