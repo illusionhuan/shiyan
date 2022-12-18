@@ -5,4 +5,7 @@
 ####  基础题
 
 (1)题目编号:1075 题解:https://github.com/illusionhuan/shiyan/blob/main/solution/1075.cpp
+(2)题目编号:1076 题解:https://github.com/illusionhuan/shiyan/blob/main/solution/1076.cpp
+(3)题目编号:1077 题解:https://github.com/illusionhuan/shiyan/blob/main/solution/1077.java
+(4)题目编号:1078 题解:https://github.com/illusionhuan/shiyan/blob/main/solution/1078.java
 
