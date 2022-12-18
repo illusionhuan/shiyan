@@ -225,7 +225,7 @@ chmod go-rw iphone11
 
 ## 8.目录结构
 
-![1](Typora\Typora/typora-user-images/1.png)
+![1](1.png)
 
 ### 目录路径
 
