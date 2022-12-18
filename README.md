@@ -1,4 +1,4 @@
-# <div align="center"><font size="70">这是我的第一个项目</font></div>
+# <div align="center"><font size="70">This is my first project</font></div>
 
 ### NEWOJ题解
 
