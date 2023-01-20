@@ -322,7 +322,85 @@ public class Main{
 
 ```
 
-## 十一、数字三角形(动态规划算法)
+## 十一、判断素数(三种方法)
+
+```java
+import java.util.Scanner;
+
+public class Main{
+    //第一种方法(基础）
+    public static boolean isPrime_1(long number){
+        long i;
+        boolean flag = false;
+        if(number == 1){
+            flag = false;
+        }
+        else{
+            for(i = 2; i < number; i++){
+                if(number%i==0){
+                    flag = false;
+                    break;
+                }
+            }
+            if(i==number){
+                flag = true;
+            }
+        }
+        return flag;
+    }
+    //第二种方法(改进)
+    public static boolean isPrime_2(long number){
+        long i;
+        boolean flag = false;
+        if(number == 1){
+            flag = false;
+        }
+        else{
+            for(i = 2; i <= number/2; i++){
+                if(number%i==0){
+                    flag = false;
+                    break;
+                }
+            }
+            if(i>number/2){
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    //第三种方法(高效率)
+    public static boolean isPrime_3(long number){
+        long i;
+        boolean flag = false;
+        if(number==1){
+            return false;
+        }else{
+            for (i = 2; i <= Math.sqrt(number); i++) {
+                if(number%i==0){
+                    flag = false;
+                    break;
+                }
+            }
+            if(i>Math.sqrt(number)){
+                flag = true;
+            }
+        }
+        return flag;
+    }
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        long number = in.nextLong();
+        System.out.println(isPrime_1(number));
+        System.out.println(isPrime_2(number));
+        System.out.println(isPrime_3(number));
+    }
+}
+```
+
+
+
+## 十二、数字三角形(动态规划算法)
 
 ```java
 import java.util.Scanner;
