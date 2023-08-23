@@ -66,7 +66,7 @@ XPATH_shipment_nation = "/html/body/div[5]/div[1]/div[1]/ul/li[1]"
 XPATH_inbound_method = "/html/body/div[6]/div[1]/div[1]/ul/li[1]"
 # 到达时间
 #TODO
-XPATH_arrival_time = "/html/body/div[7]/div[1]/div/div[2]/table[1]/tbody/tr[3]/td[3]/div"
+XPATH_arrival_time = "/html/body/div[7]/div[1]/div/div[2]/table[1]/tbody/tr[3]/td[5]/div"
 # 下一步按钮
 XPATH_next = "//*[@id='app']/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[3]/div/button"
 

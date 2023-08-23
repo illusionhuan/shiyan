@@ -1,4 +1,4 @@
-# 					数据结构与算法(JAVA版)
+# 数据结构与算法(JAVA版)
 
 ## 一、动态数组(ArrayList)
 
@@ -94,8 +94,6 @@ public class Demo {
 
 ```
 
-
-
 ## 四、树与二叉树
 
 ## 五、图
@@ -173,7 +171,7 @@ public class Demo {
         }else {
             return c >= 'a' && c <= 'z' ? c - 'a' + 10 : c - 'A' + 10;
         }
-        
+      
     }
 
     public static long ToTen(String x, int p) throws IOException {
@@ -194,18 +192,18 @@ public static String f(int c)
     if(c >= 0 && c <= 9) return  String.valueOf(c);
     return c >= 0 && c <= 9 ? String.valueOf(c) : String.valueOf((char)('A' + c - 10));
 }
-    
-public static String ToP(int x, int p) throws IOException{    	
+  
+public static String ToP(int x, int p) throws IOException{  
 	String y = ""; 
-    	
+  
     while(true)
     {
     	y = f(x % p) + y;
     	x /= p;
-    	
+  
    		if(x == 0) break;
    	}
-    	
+  
    	return y;
 }
 ```
@@ -257,14 +255,14 @@ public class Main{
 	static final int N = 10000005;
     static int[] primes = new int[N];//存放每个素数的值
     static int[] st = new int[N];//
-    
+  
     static int cnt = 0;//计算素数的个数
     public static void ola(int n){
-      
+    
         for(int i = 2; i <= n; i++)
         {
             if(st[i] == 0)	primes[cnt++] = i;
-            
+          
             for(int j = 0; primes[j] <= n / i; j++)
             {
                 st[primes[j]*i] = 1;
@@ -296,7 +294,7 @@ public class Main{
 	static final int N = 10000005;
     static int[] primes = new int[N];//存放每个素数的值
     static boolean[] st = new boolean[N];//
-    
+  
     static int cnt = 0;//计算素数的个数
     public static void get_prime(int n){
       for(int i=2;i<=n;i++) {
@@ -398,8 +396,6 @@ public class Main{
 }
 ```
 
-
-
 ## 十二、数字三角形(动态规划算法)
 
 ```java
@@ -449,3 +445,37 @@ public class Demo {
 }
 ```
 
+## 十三、冒泡排序(升序)
+
+```java
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main() {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int[] arr = new int[7];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        scanner.close();
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    int a = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = a;
+                }
+            }
+        }
+
+        for (int k = 0; k < arr.length; k++) {
+            System.out.print(arr[k] + "");
+        }
+    }
+}
+
+
+```
