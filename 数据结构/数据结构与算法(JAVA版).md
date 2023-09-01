@@ -479,3 +479,59 @@ public class Main() {
 
 
 ```
+
+## 十四、快速排序(升序)
+
+```java
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main(){
+    public static void main(String[] args){
+
+        Scanner in = new Scanner(System.in);
+        int[] arr = new int[7];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        scanner.close();
+
+        quickSort(arr,0,arr.length-1);
+
+        for(int i = 0;i< arr.length;i++) {
+            System.out.print(arr[i]+"");
+        }
+    }
+
+    public void quickSort(int[] arr,int start,int end){
+        if(start < end){
+            // 把首位数字作为基准数
+            int stand = arr[start];
+            //记录需要排序的下标
+            int low = start;
+            int high = end;
+            // 循环找到比基准数大的数和比基准数小的数
+            while(low < high) {
+                // 右边的数字比基准数大
+                while(low < high && arr[high] >= stand){
+                    high--;
+                }
+                //使用右边的数替换左边的数
+                arr[low] = arr[high];
+                // 左边的数字比基准数小
+                while(low < high && arr[low] <= stand){
+                    low++;
+                }
+                //使用左边的数替换右边的数
+                arr[high] = arr[low];
+            }
+            // 把标准值赋给下标重合的位置
+            arr[low] = stard;
+            // 处理所有小的数字
+            quickSort(arr, start, low);
+            // 处理所有大的数字
+            quickSort(arr, low + 1, end);
+        }
+    }
+}
