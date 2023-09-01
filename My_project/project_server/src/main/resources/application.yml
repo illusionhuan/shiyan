@@ -1,0 +1,42 @@
+# 端口号
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      driver-class-name: ${My_pro.datasource.driver-class-name}
+      url: jdbc:mysql://${My_pro.datasource.host}:${My_pro.datasource.port}/${My_pro.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${My_pro.datasource.username}
+      password: ${My_pro.datasource.password}
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.java.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      java:
+        mapper: debug
+        service: info
+        controller: info
+
+pro:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: my_pro
+    # 设置jwt过期时间
+    admin-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
