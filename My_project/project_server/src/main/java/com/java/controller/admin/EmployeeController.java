@@ -1,6 +1,7 @@
 package com.java.controller.admin;
 
 import com.java.constant.JwtClaimsConstant;
+import com.java.constant.MessageConstant;
 import com.java.dto.EmployeeDTO;
 import com.java.dto.EmployeeLoginDTO;
 import com.java.dto.EmployeePageQueryDTO;
@@ -73,7 +74,8 @@ public class EmployeeController {
      * @return {@link Result}
      */
     @PostMapping("/logout")
-    public Result logout(){
+    @ApiOperation("员工退出")
+    public Result<String> logout(){
         return Result.success();
     }
 
@@ -91,7 +93,10 @@ public class EmployeeController {
         employeeService.save(employeeDTO);
         return Result.success();
     }
-
+    /*
+    *
+    * 分页查询员工
+    * */
     @GetMapping("/page")
     @ApiOperation("分页管理接口")
     public Result<PageResult> page(@RequestBody EmployeePageQueryDTO employeePageQueryDTO){
@@ -99,5 +104,59 @@ public class EmployeeController {
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+
+
+    /**
+     * 功能描述:
+     *
+     * @param status
+     * @param id
+     * @return
+     */
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用/禁用员工账号")
+    public Result<String> startOrStop(@PathVariable Integer status,Long id){
+        log.info("启用/禁用员工账号:{},{}",status,id);
+        employeeService.startOrStop(status,id);
+        return Result.success();
+    }
+
+    /**
+     * 功能描述：按id查询员工
+     *
+     * @return
+     * @date 2023/09/03
+     */
+
+    @GetMapping("/{id}")
+    @ApiOperation("按id查询员工")
+    public Result<Employee> getById(@PathVariable Long id){
+        log.info("查询员工信息:{}",id);
+        Employee employee = employeeService.getById(id);
+        if(employee != null){
+            return Result.success(employee);
+        }else{
+            return Result.error(MessageConstant.ACCOUNT_NOT_FOUND);
+        }
+    }
+
+    /**
+     * 功能描述:编辑员工信息
+     *
+     * @param employeeDTO
+     * @return
+     * @date 2023/09/03
+     */
+
+    @PutMapping
+    @ApiOperation("编辑员工信息")
+    public Result updateEmloyee(@RequestBody EmployeeDTO employeeDTO){
+        log.info("编辑员工信息:{}", employeeDTO);
+        employeeService.updateEmployee(employeeDTO);
+
+        return Result.success();
+    }
+
 
 }

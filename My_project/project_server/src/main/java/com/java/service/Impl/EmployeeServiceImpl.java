@@ -43,17 +43,28 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new AccountNotFoundException(MessageConstant.ACCOUNT_NOT_FOUND);
         }
         //密码比对
-        // TODO 后期需要进行md5加密，然后再进行比对
-        if(!password.equals(employee.getPassword())){
+        //对前端传过来的明文密码进行md5加密处理
+        password = DigestUtils.md5DigestAsHex(password.getBytes());
+        if (!password.equals(employee.getPassword())) {
+            //密码错误
             throw new PasswordErrorException(MessageConstant.PASSWORD_ERROR);
-
         }
+
         if(employee.getStatus() == 0){
             throw new AccountLockedException(MessageConstant.ACCOUNT_LOCKED);
         }
 
         return employee;
     }
+
+
+    /**
+     * 功能描述：新增员工
+     *
+     * @param employeeDTO
+     * @author illusion
+     * @date 2023/09/03
+     */
 
     @Override
     public void save(EmployeeDTO employeeDTO) {
@@ -74,10 +85,67 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    /**
+     * 分页查询
+     * @param employeePageQueryDTO
+     * @return {@link PageResult}
+     */
     @Override
     public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
         PageHelper.startPage(employeePageQueryDTO.getPage(),employeePageQueryDTO.getPageSize());
         Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
         return new PageResult(page.getTotal(),page.getResult());
+    }
+
+
+    /**
+     * 功能描述：
+     *
+     * @param status
+     * @param id
+     * @date 2023/09/03
+     */
+    @Override
+    public void startOrStop(Integer status,Long id){
+        Employee employee = Employee.builder()
+                .id(id)
+                .status(status)
+                .build();
+        employeeMapper.updateEmployee(employee);
+    }
+
+    /**
+     * 功能描述:按id查询员工
+     *
+     * @param id
+     * @return
+     * @date 2023/09/03
+     */
+
+    public Employee getById(Long id){
+        Employee employee = employeeMapper.getById(id);
+        employee.setPassword("****");
+        return employee;
+    }
+
+    /**
+     * 功能描述:按id编辑员工信息
+     *
+     * @param employeeDTO
+     * @return
+     * @date 2023/09/03
+     */
+
+    public void updateEmployee(EmployeeDTO employeeDTO){
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO, employee);
+
+        //设置修改人和时间
+//        employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setUpdateTime(LocalDateTime.now());
+//
+//        System.out.println(LocalDateTime.now());
+
+        employeeMapper.updateEmployee(employee);
     }
 }
