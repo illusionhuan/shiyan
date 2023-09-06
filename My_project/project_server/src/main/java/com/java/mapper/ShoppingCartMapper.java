@@ -1,6 +1,9 @@
 package com.java.mapper;
 
+import com.java.annotation.AutoFill;
 import com.java.entity.ShoppingCart;
+import com.java.enumeration.OperationType;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Update;
@@ -36,4 +39,7 @@ public interface ShoppingCartMapper {
     @Insert("insert into shopping_cart (name, user_id, dish_id, setmeal_id, dish_flavor, number, amount, image, create_time) " +
             " values (#{name},#{userId},#{dishId},#{setmealId},#{dishFlavor},#{number},#{amount},#{image},#{createTime})")
     void insert(ShoppingCart shoppingCart);
+
+    @Delete("delete from shopping_cart where user_id = #{useId}")
+    void deleteById(Long userId);
 }

@@ -18,6 +18,7 @@ import java.util.List;
 
 @Service
 public class ShoppinCartServiceImpl implements ShoppingCartService {
+
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
     @Autowired
@@ -38,7 +39,11 @@ public class ShoppinCartServiceImpl implements ShoppingCartService {
         BeanUtils.copyProperties(shoppingCartDTO,shoppingCart);
 
         //只能查询自己的购物车数据
-        shoppingCart.setUserId(BaseContext.getCurrentId());
+//        Long userId = BaseContext.getCurrentId();
+//        shoppingCart.setUserId(userId);
+        shoppingCart.setUserId(1L);
+
+
 
         //判断商品是否在购物车中
         List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
@@ -69,5 +74,28 @@ public class ShoppinCartServiceImpl implements ShoppingCartService {
             shoppingCart.setCreateTime(LocalDateTime.now());
             shoppingCartMapper.insert(shoppingCart);
         }
+    }
+
+    /**
+     * 功能描述:展示购物车
+     *
+     * @return
+     */
+
+    @Override
+    public List<ShoppingCart> showShoppingCart() {
+        return shoppingCartMapper.list(ShoppingCart.builder().userId(1L).build());
+    }
+
+    /**
+     * 功能描述:清空购物车
+     *
+     * @return
+     */
+
+    @Override
+    public void cleanShoppingCart() {
+//        shoppingCartMapper.deleteById(BaseContext.getCurrentId());
+        shoppingCartMapper.deleteById(1L);
     }
 }
