@@ -28,17 +28,35 @@ public class DishController{
 
     @Autowired
     private DishService dishService;
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    /**
+     * 功能描述:新增菜品
+     *
+     * @param dishDTO
+     * @return
+     */
 
     @PostMapping
     @ApiOperation("新增菜品接口")
     public Result<String> save(@RequestBody DishDTO dishDTO) {
         log.info("新增菜品:{}", dishDTO);
 
-        System.out.println(dishDTO);
         dishService.saveWithFlavor(dishDTO);
 
+        Long categoryId = dishDTO.getCategoryId();
+        String key = "dish_" + categoryId;
+        cleanCache(key);
         return Result.success();
     }
+
+    /**
+     * 功能描述:分页查询
+     *
+     * @param dishPageQueryDTO
+     * @return
+     */
 
     @GetMapping("/page")
     @ApiOperation("分页查询接口")
@@ -49,12 +67,75 @@ public class DishController{
         return Result.success(pageResult);
     }
 
+    /**
+     * 功能描述:批量删除
+     *
+     * @param ids
+     * @return
+     */
+
     @DeleteMapping
     @ApiOperation("批量删除菜品")
     public Result<String> delete(@RequestParam List<Long> ids){
         log.info("批量删除菜品:{}",ids);
         dishService.deleteBatch(ids);
 
+        //删除所有菜品的缓存数据
+        cleanCache("dish_*");
         return Result.success();
+    }
+
+    /**
+     * 功能描述:按Id查询菜品
+     *
+     * @param id
+     * @return
+     */
+
+    @GetMapping("/{id}")
+    @ApiOperation("按ID查询菜品")
+    public Result<DishVO> getByID(@PathVariable Long id){
+        log.info("按ID查询菜品:{}",id);
+        return Result.success(dishService.getByIdWithFlavor(id));
+    }
+
+    /**
+     * 功能描述:修改菜品
+     *
+     * @param dishDTO
+     * @return
+     */
+
+    @PutMapping
+    @ApiOperation("修改菜品")
+    public Result update(@RequestBody DishDTO dishDTO){
+        log.info("修改菜品:{}",dishDTO);
+        dishService.updateWithFlavor(dishDTO);
+
+        //删除所有菜品的缓存数据
+        cleanCache("dish_*");
+
+        return Result.success();
+    }
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("起售/停售菜品")
+    public Result startOrStop(@PathVariable Integer status,Long id){
+        log.info("起售/停售菜品:{},{}",status,id);
+        dishService.startOrStop(status,id);
+
+        //删除所有菜品的缓存数据
+        cleanCache("dish_*");
+
+        return Result.success();
+    }
+    /**
+     * 清理缓存数据
+     * @param pattern
+     */
+
+    private void cleanCache(String pattern){
+        Set keys = redisTemplate.keys(pattern);
+        redisTemplate.delete(keys);
     }
 }

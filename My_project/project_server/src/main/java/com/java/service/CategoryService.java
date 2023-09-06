@@ -4,8 +4,11 @@ import com.java.dto.CategoryDTO;
 import com.java.dto.CategoryPageQueryDTO;
 import com.java.entity.Category;
 import com.java.result.PageResult;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public interface CategoryService {
 
     /**

@@ -13,6 +13,10 @@ spring:
       url: jdbc:mysql://${My_pro.datasource.host}:${My_pro.datasource.port}/${My_pro.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: ${My_pro.datasource.username}
       password: ${My_pro.datasource.password}
+  redis:
+    host: ${pro.redis.host}
+    port: ${pro.redis.port}
+    password: ${pro.redis.password}
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

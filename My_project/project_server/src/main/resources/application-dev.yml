@@ -13,4 +13,9 @@ pro:
     access-key-id: your-access-key-id
     access-key-secret: your-access-key-secret
     bucket-name: your-bucket-name
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+
 

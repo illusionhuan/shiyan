@@ -2,7 +2,9 @@ package com.java.service;
 
 import com.java.dto.DishDTO;
 import com.java.dto.DishPageQueryDTO;
+import com.java.entity.Dish;
 import com.java.result.PageResult;
+import com.java.vo.DishVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,4 +38,39 @@ public interface DishService {
      */
 
     void deleteBatch(List<Long> ids);
+
+    /**
+     * 功能描述:查询菜品和口味
+     *
+     * @param id
+     * @return
+     */
+
+    DishVO getByIdWithFlavor(Long id);
+
+    /**
+     * 功能描述:修改菜品
+     *
+     * @param dishDTO
+     * @return
+     */
+
+    void updateWithFlavor(DishDTO dishDTO);
+
+    /**
+     * 功能描述:起售、停售商品
+     *
+     * @param status
+     * @param id
+     * @return
+     */
+
+    void startOrStop(Integer status,Long id);
+
+    /**
+     * 条件查询菜品和口味
+     * @param dish
+     * @return
+     */
+    List<DishVO> listWithFlavor(Dish dish);
 }
