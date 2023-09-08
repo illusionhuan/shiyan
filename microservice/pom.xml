@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.java</groupId>
+  <artifactId>microservice</artifactId>
+  <!-- 首先修改打包方式 -->
+  <packaging>pom</packaging>
+  <modules>
+    <module>cloud_api_common</module>
+    <module>cloud_provide_payment</module>
+    <module>cloud_customer_order</module>
+    <module>cloud_eureka_server</module>
+    <module>cloud_eureka_server02</module>
+    <module>cloud_provide_payment02</module>
+    <!--    <module>cloud_eureka_srever</module>-->
+  </modules>
+  <version>1.0-SNAPSHOT</version>
+
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <mysql.version>8.0.33</mysql.version>
+    <druid.version>1.2.1</druid.version>
+    <junit.version>4.1.2</junit.version>
+    <lombok.version>1.18.28</lombok.version>
+    <log4j.vsrsion>1.2.12</log4j.vsrsion>
+    <spring-cloud.version>2021.0.8</spring-cloud.version>
+  </properties>
+  <!--  因为是总项目 所以用dependencyManagement来管理  因为其他的子项目就不会来管理版本了了 可以直接引用 -->
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- springcloud的依赖-->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- springboot的依赖-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>2.7.15</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--  数据库-->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+      <!-- springboot启动器-->
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>2.3.1</version>
+      </dependency>
+      <!--单元测试 -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+      </dependency>
+      <!-- lombok-->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.28</version>
+      </dependency>
+
+      <!-- log4j-->
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j.vsrsion}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>1.2.12</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>
